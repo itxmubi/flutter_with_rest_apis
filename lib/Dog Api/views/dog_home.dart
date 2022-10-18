@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_with_rest_apis/Dog%20Api/controller/dog_controller.dart';
+import 'package:flutter_with_rest_apis/Dog%20Api/views/breedlist.dart';
 import 'package:get/get.dart';
 
 class DogHome extends StatefulWidget {
@@ -10,7 +11,6 @@ class DogHome extends StatefulWidget {
 }
 
 class _DogHomeState extends State<DogHome> {
-  DogApiController dogApiController = Get.put(DogApiController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,7 @@ class _DogHomeState extends State<DogHome> {
       body: Column(children: [
         ElevatedButton(
             onPressed: () {
-              dogApiController.breedList();
+              Get.to(() => const BreedListScreen());
             },
             child: const Text("Breed List"))
       ]),
