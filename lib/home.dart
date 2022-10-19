@@ -14,13 +14,28 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Apis ")),
+      appBar: AppBar(
+        title: const Text("Apis "),
+        centerTitle: true,
+      ),
       body: Column(children: [
-        ElevatedButton(
-            onPressed: () {
+        const SizedBox(
+          height: 50,
+        ),
+        InkWell(
+            onTap: () {
               Get.to(() => const DogHome());
             },
-            child: const Text("Dog Api"))
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                alignment: Alignment.center,
+                height: 70,
+                width: 370,
+                decoration: BoxDecoration(border: Border.all()),
+                child: const Text("Dog APi"),
+              ),
+            )),
       ]),
     );
   }

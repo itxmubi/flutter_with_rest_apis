@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_with_rest_apis/Dog%20Api/controller/dog_controller.dart';
 import 'package:flutter_with_rest_apis/Dog%20Api/views/breedlist.dart';
 import 'package:get/get.dart';
+
+import 'pics_by_breed_list.dart';
 
 class DogHome extends StatefulWidget {
   const DogHome({super.key});
@@ -18,11 +19,40 @@ class _DogHomeState extends State<DogHome> {
         title: const Text("Dog Home "),
       ),
       body: Column(children: [
-        ElevatedButton(
-            onPressed: () {
+        const SizedBox(
+          height: 50,
+        ),
+        InkWell(
+            onTap: () {
               Get.to(() => const BreedListScreen());
             },
-            child: const Text("Breed List"))
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                alignment: Alignment.center,
+                height: 70,
+                width: 370,
+                decoration: BoxDecoration(border: Border.all()),
+                child: const Text("Breed List"),
+              ),
+            )),
+        const SizedBox(
+          height: 50,
+        ),
+        InkWell(
+            onTap: () {
+              Get.to(() => const PicsByBreedScreen());
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                alignment: Alignment.center,
+                height: 70,
+                width: 370,
+                decoration: BoxDecoration(border: Border.all()),
+                child: const Text("Pics By Breed List"),
+              ),
+            )),
       ]),
     );
   }

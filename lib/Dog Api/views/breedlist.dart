@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_with_rest_apis/Dog%20Api/controller/dog_controller.dart';
+import 'package:flutter_with_rest_apis/Dog%20Api/views/pics_by_breed_list.dart';
 import 'package:get/get.dart';
 
 class BreedListScreen extends StatefulWidget {
@@ -29,37 +30,42 @@ class _BreedListScreenState extends State<BreedListScreen> {
         children: [
           const Text("dfasdf"),
           GetBuilder<DogApiController>(builder: (controller) {
-            return Container(
-              child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount:
-                      dogApiController.breedsListModel.message!.length ?? 0,
-                  itemBuilder: ((context, index) {
-                    return dogApiController.breedsListModel.message!.isNotEmpty
-                        ? ListTile(
-                            title: Text(dogApiController
-                                .breedsListModel.message!.entries.first
-                                .toString()),
-                          )
-                        : ListTile(
-                            title: Text("Breed".toString()),
-                          );
-                  })),
-            );
+            return controller.breedsListModel.message!.entries != null
+                ? Container(
+                    child: ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount:
+                            dogApiController.breedsListModel.message!.length,
+                        itemBuilder: ((context, index) {
+                          return dogApiController
+                                  .breedsListModel.message!.isNotEmpty
+                              ? ListTile(
+                                  onTap: () {
+                                    dogApiController.breedType =
+                                        dogApiController
+                                            .breedsListModel.message!.entries
+                                            .elementAt(index)
+                                            .key
+                                            .toString();
+                                    dogApiController.update();
+                                    Get.to(() => const PicsByBreedScreen());
+                                  },
+                                  title: Text(dogApiController
+                                      .breedsListModel.message!.entries
+                                      .elementAt(index)
+                                      .key
+                                      .toString()),
+                                )
+                              : ListTile(
+                                  title: Text("Breed".toString()),
+                                );
+                        })),
+                  )
+                : const CircularProgressIndicator();
           }),
         ],
-      )
-          // Column(children: [
-          //   for (int i = 0;
-          //       i < dogApiController.breedsListModel.message!.length;
-          //       i++)
-          //     ListTile(
-          //       title: Text(dogApiController.breedsListModel.message![i]!.first
-          //           .toString()),
-          //     )
-          // ]),
-          ),
+      )),
     );
   }
 }
