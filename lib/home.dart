@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_with_rest_apis/Sports%20Data%20Api/views/countries.dart';
 import 'package:get/get.dart';
 
 import 'Dog Api/views/dog_home.dart';
@@ -34,6 +35,20 @@ class _HomePageState extends State<HomePage> {
                 width: 370,
                 decoration: BoxDecoration(border: Border.all()),
                 child: const Text("Dog APi"),
+              ),
+            )),
+        InkWell(
+            onTap: () {
+              Get.to(() => const SportsCountries());
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                alignment: Alignment.center,
+                height: 70,
+                width: 370,
+                decoration: BoxDecoration(border: Border.all()),
+                child: const Text("Sports Data APi"),
               ),
             )),
       ]),
