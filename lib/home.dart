@@ -37,6 +37,9 @@ class _HomePageState extends State<HomePage> {
                 child: const Text("Dog APi"),
               ),
             )),
+        const SizedBox(
+          height: 20,
+        ),
         InkWell(
             onTap: () {
               Get.to(() => const SportsCountries());
